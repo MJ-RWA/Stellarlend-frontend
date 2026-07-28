@@ -64,12 +64,6 @@ function formatCollateralRatioSummary(
   return `Collateral ratio is ${formatRatio(latestRatio)}, ${changeText} ${rangeText}.`;
 }
 
-function buildPath(points: Array<{ x: number; y: number }>): string {
-  if (points.length === 0) {
-    return "";
-  }
-
-
 function toCollateralRatioPoints(
   snapshots: SnapshotHistoryResponse["snapshots"],
 ): CollateralRatioPoint[] {

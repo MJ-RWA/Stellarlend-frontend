@@ -1,6 +1,10 @@
 {
   "ci": {
     "collect": {
+      "url": [
+        "http://localhost:3000/dashboard",
+        "http://localhost:3000/lending"
+      ],
       "numberOfRuns": 3,
       "settings": {
         "chromeFlags": "--headless=new --no-sandbox --disable-gpu --disable-dev-shm-usage"

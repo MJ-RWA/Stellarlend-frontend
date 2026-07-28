@@ -75,7 +75,7 @@ export function withCsrfProtection<T extends (...args: any[]) => Promise<NextRes
 }
 
 export function withRequestLogging<T extends (...args: any[]) => Promise<NextResponse> | NextResponse>(route: string, handler: T) {
-  return async (...args: Parameters<T>): Promise<NextResponse> => {
+  const wrapped = async (...args: Parameters<T>): Promise<NextResponse> => {
     const request = args[0] as NextRequest | undefined;
     const method = request?.method ?? 'UNKNOWN';
     const startedAt = Date.now();
@@ -168,5 +168,6 @@ export function withRequestLogging<T extends (...args: any[]) => Promise<NextRes
         );
       }
     });
-  }) as T;
+  };
+  return wrapped as T;
 }

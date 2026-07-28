@@ -38,9 +38,11 @@ jobs:
         continue-on-error: true
 
       - name: Upload coverage reports
+        if: env.CODECOV_TOKEN != ''
         uses: codecov/codecov-action@v4
         with:
           file: ./coverage/lcov.info
           flags: unittests
           name: codecov-umbrella
-        if: always()
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

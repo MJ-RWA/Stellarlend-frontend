@@ -1,5 +1,6 @@
 // .eslintrc.js
 module.exports = {
+  ignorePatterns: ["package/"],
   extends: ["next/core-web-vitals"],
   rules: {
     "react/prop-types": "off",

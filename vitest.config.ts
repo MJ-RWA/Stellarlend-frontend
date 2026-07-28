@@ -135,7 +135,7 @@ export default defineConfig({
     ],
 
     coverage: {
-      reporter: ["text", "json"],
+      reporter: ["text", "json", "lcov"],
 
       include: [
         "app/api/**",

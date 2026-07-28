@@ -9,21 +9,16 @@ import {
   CalendarDays,
 } from "lucide-react";
 import Image from "next/image";
-import { StatusBadge } from "../ui";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { format } from "date-fns";
-import Image from "next/image";
-import { useRouter, useSearchParams } from "next/navigation";
+import { StatusBadge, transactionStatusToVariant } from "@/components/shared/ui/StatusBadge";
 import dynamic from "next/dynamic";
 import { Pagination } from "./Pagination";
 import { EmptyState } from "./EmptyState";
 import { TransactionsSkeleton } from "./Skeleton";
 import { TransactionRow, TransactionMobileRow } from "./TransactionRow";
-import {
-  StatusBadge,
-  transactionStatusToVariant,
-} from "@/components/shared/ui/StatusBadge";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { format } from "date-fns";
+import { useRouter, useSearchParams } from "next/navigation";
 import { usePendingTransactions } from "@/hooks/usePendingTransactions";
 import {
   fetchTransactions,
@@ -528,50 +523,51 @@ export const Transactions = ({
                 <thead>
                   <tr className="bg-gray-50 text-gray-500 border-b whitespace-nowrap">
                     <th className="py-3 px-4 text-left font-semibold">Transaction Type</th>
-                    <th
-                      className="py-3 px-4 text-left font-semibold"
-                      scope="col"
-                      aria-sort={sortKey === "amount" ? (sortOrder === "asc" ? "ascending" : "descending") : "none"}
-                    >
-                      <button
-                        type="button"
-                        className="flex items-center gap-1 text-left font-semibold"
-                        aria-sort={getAriaSortValue("amount")}
-                        aria-label="Sort by amount"
-                        onClick={() => handleHeaderClick("amount")}
-                        onKeyDown={(event) => handleHeaderKeyDown(event, "amount")}
-                      >
+                     <th
+                       className="py-3 px-4 text-left font-semibold"
+                       scope="col"
+                       aria-sort={getAriaSortValue("amount")}
+                     >
+                       <button
+                         type="button"
+                         className="flex items-center gap-1 text-left font-semibold"
+                         aria-label="Sort by amount"
+                         onClick={() => handleHeaderClick("amount")}
+                         onKeyDown={(event) => handleHeaderKeyDown(event, "amount")}
+                       >
                         <span>Amount</span>
                         {effectiveSortKey === "amount" ? (effectiveSortOrder === "asc" ? " ↑" : " ↓") : " ↕"}
                       </button>
                     </th>
                     <th className="py-3 px-4 text-left font-semibold" aria-sort="none">Asset</th>
-                    <th className="py-3 px-4 text-left font-semibold" scope="col">
-                      <button
-                        type="button"
-                        className="flex items-center gap-1 text-left font-semibold"
-                        aria-sort={getAriaSortValue("date")}
-                        aria-label="Sort by date"
-                        onClick={() => handleHeaderClick("date")}
-                        onKeyDown={(event) => handleHeaderKeyDown(event, "date")}
-                      >
+                     <th
+                       className="py-3 px-4 text-left font-semibold"
+                       scope="col"
+                       aria-sort={getAriaSortValue("date")}
+                     >
+                       <button
+                         type="button"
+                         className="flex items-center gap-1 text-left font-semibold"
+                         aria-label="Sort by date"
+                         onClick={() => handleHeaderClick("date")}
+                         onKeyDown={(event) => handleHeaderKeyDown(event, "date")}
+                       >
                         <span>Date</span>
                         {effectiveSortKey === "date" ? (effectiveSortOrder === "asc" ? " ↑" : " ↓") : " ↕"}
                       </button>
                     </th>
-                    <th
-                      className="py-3 px-4 text-left font-semibold"
-                      scope="col"
-                      aria-sort={sortKey === "status" ? (sortOrder === "asc" ? "ascending" : "descending") : "none"}
-                    >
-                      <button
-                        type="button"
-                        className="flex items-center gap-1 text-left font-semibold"
-                        aria-sort={getAriaSortValue("status")}
-                        aria-label="Sort by status"
-                        onClick={() => handleHeaderClick("status")}
-                        onKeyDown={(event) => handleHeaderKeyDown(event, "status")}
-                      >
+                     <th
+                       className="py-3 px-4 text-left font-semibold"
+                       scope="col"
+                       aria-sort={getAriaSortValue("status")}
+                     >
+                       <button
+                         type="button"
+                         className="flex items-center gap-1 text-left font-semibold"
+                         aria-label="Sort by status"
+                         onClick={() => handleHeaderClick("status")}
+                         onKeyDown={(event) => handleHeaderKeyDown(event, "status")}
+                       >
                         <span>Status</span>
                         {effectiveSortKey === "status" ? (effectiveSortOrder === "asc" ? " ↑" : " ↓") : " ↕"}
                       </button>

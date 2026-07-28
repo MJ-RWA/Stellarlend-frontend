@@ -35,42 +35,6 @@ class SafeLayoutRegion extends Component<ErrorBoundaryProps, ErrorBoundaryState>
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="flex">
-      <SafeLayoutRegion fallback={<div data-testid="sidenav-fallback" className="w-64 bg-gray-100 min-h-screen p-4">Navigation unavailable</div>}>
-        <SideNav />
-      </SafeLayoutRegion>
-      <div className="w-full min-h-screen bg-[#15A350] flex flex-col">
-        <SafeLayoutRegion fallback={<div data-testid="topnav-fallback" className="w-full h-16 bg-gray-100 p-4">Header unavailable</div>}>
-          <TopNav />
-        </SafeLayoutRegion>
-        <main className="flex-1">{children}</main>
-/**
- * DashboardLayout
- *
- * Orchestrates the three primary layout regions:
- *
- * 1. **SideNav** — persistent navigation sidebar (collapsible via SidebarContext).
- * 2. **TopNav** — wrapped in a `<header>` landmark for accessibility.
- * 3. **main** — full-height content slot; receives `id="main-content"` so the
- *    skip-to-content link can target it directly.
- *
- * ## Accessibility
- *
- * - A visually-hidden skip link is the **first focusable element** in the DOM.
- *   Keyboard users can press Tab once to reach it and skip directly to the
- *   main content region, bypassing the navigation and top bar.
- * - The `<header>`, `<nav>` (inside SideNav), and `<main>` landmarks are all
- *   present so screen-reader users can jump between regions via landmark
- *   navigation.
- *
- * ## Read-budget note
- *
- * DashboardLayout is a pure slot-composition component — it performs no data
- * fetching and holds no local state. All interactive behaviour is delegated to
- * child components (SideNav uses SidebarContext; TopNav uses WalletContext).
- */
-const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <div className="flex">
       {/*
        * Skip-to-content link
        *
